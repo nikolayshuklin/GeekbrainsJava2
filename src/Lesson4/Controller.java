@@ -1,10 +1,5 @@
 package Lesson4;
 
-import javafx.*;
-
-import java.awt.*;
-import java.sql.SQLOutput;
-
 public class Controller {
 
    @FXML

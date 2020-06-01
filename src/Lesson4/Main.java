@@ -1,9 +1,9 @@
 package Lesson4;
 
-import javafx.*;
-import java.awt.*;
-import java.sql.SQLOutput;
-
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 public class Main<Stage> extends Application {
 
     @Override
