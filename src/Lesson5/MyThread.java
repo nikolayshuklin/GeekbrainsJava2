@@ -18,6 +18,11 @@ public class MyThread extends Thread{
             arr[i] = (float) (arr[i] * Math.sin(0.2f + i / 5) * Math.cos(0.2f + i / 5) * Math.cos(0.4f + i / 2));
             ;
         }
+//        try {
+//            this.join();
+//        } catch (InterruptedException e){
+//            e.printStackTrace();
+//        }
     }
 
     public static void main(String[] args) {
@@ -31,7 +36,13 @@ public class MyThread extends Thread{
             arr[i]=1;
         }
         long a = System.currentTimeMillis();
-        new MyThread(arr).start();
+        Thread thread1 = new MyThread(arr);
+        thread1.start();
+        try {
+            thread1.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         long b = System.currentTimeMillis();
         System.out.println(b-a);
     }
@@ -46,11 +57,20 @@ public class MyThread extends Thread{
         float [] arr2 = new float[HALF];
         System.arraycopy(arr,0,arr1,0,HALF);
         System.arraycopy(arr,HALF,arr2,0,HALF);
-        new MyThread(arr1).start();
-        new MyThread(arr2).start();
+        Thread thread2 = new MyThread(arr1);
+        Thread thread3 = new MyThread(arr2);
+        thread2.start();
+        thread3.start();
+        try {
+            thread2.join();
+            thread3.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         System.arraycopy(arr1,0, arr, 0, HALF);
         System.arraycopy(arr2,0, arr, HALF, HALF);
-        float b = System.currentTimeMillis();
+        long b = System.currentTimeMillis();
         System.out.println(b-a);
 
     }
